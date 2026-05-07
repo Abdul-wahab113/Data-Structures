@@ -28,6 +28,7 @@ public:
     // methods
     void insert(int data);
     void insertAtFront(int data);
+    void deleteNode(int key);
     void display();
 };
 
@@ -71,6 +72,47 @@ void LinkedList::insertAtFront(int data)
     head = newNode;
 }
 
+void LinkedList::deleteNode(int key)
+{
+
+    // if LL is empty
+    if (head == NULL)
+    {
+        cout << "Linked List is empty!" << endl;
+        return;
+    }
+
+    // if linked list has only one node
+    if (head->data == key)
+    {
+        head = head->next;
+        return;
+    }
+
+    // if ll has more nodes
+    Node *temp = head;
+    Node *prevTemp = head;
+
+    while (temp != NULL && temp->data != key)
+    {
+        prevTemp = temp;
+        temp = temp->next;
+    }
+
+    // Check if node was found
+    if (temp == NULL)
+    {
+        cout << "The Given Target: " << key << " NOT FOUND!" << endl;
+        return;
+    }
+
+    prevTemp->next = temp->next;
+    delete temp;
+
+    // cout << "previous Node: " << prevTemp->data << endl;
+    // cout << "Target Node: " << temp->data << endl;
+}
+
 void LinkedList::display()
 {
 
@@ -100,9 +142,18 @@ int main()
     ll.insert(17);
     ll.insert(19);
     ll.insertAtFront(10);
-    
 
+    cout << "Before Deletion :" << endl;
     ll.display();
+
+    cout << endl;
+
+    ll.deleteNode(22);
+
+    cout << "After Deletion :" << endl;
+    ll.display();
+
+    cout << endl;
 
     return 0;
 }
