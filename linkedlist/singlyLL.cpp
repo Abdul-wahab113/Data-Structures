@@ -17,19 +17,30 @@ public:
 
 class LinkedList
 {
+public:
     Node *head;
 
-public:
     LinkedList()
     {
         head = NULL;
     }
 
     // methods
+    /*
+    CRUD:
+    C -> Create || insert
+    R -> Read || display
+    U -> Update || update
+    D -> Delete || delete
+    */
     void insert(int data);
     void insertAtFront(int data);
     void deleteNode(int key);
+    void updateNode(int data, int newVal);
     void display();
+
+    // problems
+    void reverse();
 };
 
 void LinkedList::insert(int data)
@@ -99,7 +110,7 @@ void LinkedList::deleteNode(int key)
         temp = temp->next;
     }
 
-    // Check if node was found
+    // Check if node was not  found
     if (temp == NULL)
     {
         cout << "The Given Target: " << key << " NOT FOUND!" << endl;
@@ -111,6 +122,33 @@ void LinkedList::deleteNode(int key)
 
     // cout << "previous Node: " << prevTemp->data << endl;
     // cout << "Target Node: " << temp->data << endl;
+}
+
+void LinkedList::updateNode(int key, int newVal)
+{
+
+    if (head == NULL)
+    {
+        cout << "Linked List is Empty" << endl;
+        return;
+    }
+
+    // if key is not the first node
+    Node *temp = head;
+
+    while (temp != NULL && temp->data != key)
+    {
+        temp = temp->next;
+    }
+
+    // if key not found
+    if (temp == NULL)
+    {
+        cout << "Key Not Found!" << endl;
+        return;
+    }
+
+    temp->data = newVal;
 }
 
 void LinkedList::display()
@@ -130,6 +168,34 @@ void LinkedList::display()
     }
 };
 
+void LinkedList::reverse()
+{
+    // Handle empty list
+    if (head == NULL)
+    {
+        return;
+    }
+    // Three pointers approach
+    Node *prev = NULL;
+    Node *current = head;
+
+    while (current != NULL)
+    {
+        // Store next node BEFORE reversing
+        Node *next = current->next;
+
+        // Reverse the link
+        current->next = prev;
+
+        // Move pointers forward
+        prev = current;
+        current = next;
+    }
+
+    // Update head to new first node
+    head = prev;
+}
+
 int main()
 {
 
@@ -143,16 +209,33 @@ int main()
     ll.insert(19);
     ll.insertAtFront(10);
 
-    cout << "Before Deletion :" << endl;
-    ll.display();
+    // cout << "Before Deletion :" << endl;
+    // ll.display();
 
+    // cout << endl;
+
+    // ll.deleteNode(22);
+
+    // cout << "After Deletion :" << endl;
+    // ll.display();
+
+    // cout << endl;
+
+    // cout << "Before Updation :" << endl;
+    // ll.display();
+    // cout << endl;
+    // ll.updateNode(112, 18);
+    // cout << "after Updation :" << endl;
+    // ll.display();
+
+    cout << "Before Reverse :" << endl;
+    ll.display();
     cout << endl;
 
-    ll.deleteNode(22);
+    ll.reverse();
 
-    cout << "After Deletion :" << endl;
+    cout << "After Reverse :" << endl;
     ll.display();
-
     cout << endl;
 
     return 0;

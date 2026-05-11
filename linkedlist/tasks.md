@@ -13,8 +13,8 @@
 ### 1. Reverse a Linked List
 - **Description**: Reverse the entire linked list in-place
 - **Why**: Core interview problem, tests pointer manipulation
-- **Approach**: Iterative and recursive solutions
-- **Status**: ⏳ To implement
+- **Approach**: Iterative three-pointer technique
+- **Status**: ✅ Completed
 
 ### 2. Detect Cycle
 - **Description**: Check if linked list has a cycle (loop)
