@@ -41,6 +41,8 @@ public:
 
     // problems
     void reverse();
+    void middleNode();
+    void removeDuplicates();
 };
 
 void LinkedList::insert(int data)
@@ -196,6 +198,58 @@ void LinkedList::reverse()
     head = prev;
 }
 
+void LinkedList::middleNode()
+{
+    if (head == NULL)
+    {
+        cout << "Linked List is empty!" << endl;
+        return;
+    }
+
+    Node *slow;
+    Node *fast;
+
+    slow = fast = head;
+
+    while (fast != NULL && fast->next != NULL)
+    {
+
+        // 1 step for the slow pointer
+        // and 2 steps for the fast pointer
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+
+    cout << "Middle Node :" << slow->data << endl;
+}
+
+void LinkedList::removeDuplicates(){
+    if (head == NULL)
+    {
+        return;
+    }
+
+    Node *current = head;
+    while (current != NULL)
+    {
+        Node *runner = current;
+        while (runner->next != NULL)
+        {
+            if (runner->next->data == current->data)
+            {
+                Node *duplicate = runner->next;
+                runner->next = duplicate->next;
+                delete duplicate;
+            }
+            else
+            {
+                runner = runner->next;
+            }
+        }
+        current = current->next;
+    }
+}
+
 int main()
 {
 
@@ -207,7 +261,17 @@ int main()
     ll.insert(32);
     ll.insert(17);
     ll.insert(19);
-    ll.insertAtFront(10);
+    ll.insert(32);
+    ll.insert(17);
+    // ll.insertAtFront(10);
+    cout << "Before removeDuplicates: ";
+    ll.display();
+    cout << endl;
+
+    ll.removeDuplicates();
+    cout << "After removeDuplicates: ";
+    ll.display();
+    cout << endl;
 
     // cout << "Before Deletion :" << endl;
     // ll.display();
@@ -228,15 +292,17 @@ int main()
     // cout << "after Updation :" << endl;
     // ll.display();
 
-    cout << "Before Reverse :" << endl;
-    ll.display();
-    cout << endl;
+    // cout << "Before Reverse :" << endl;
+    // ll.display();
+    // cout << endl;
 
-    ll.reverse();
+    // ll.reverse();
 
-    cout << "After Reverse :" << endl;
-    ll.display();
-    cout << endl;
+    // cout << "After Reverse :" << endl;
+    // ll.display();
+    // cout << endl;
+
+    ll.middleNode();
 
     return 0;
 }
