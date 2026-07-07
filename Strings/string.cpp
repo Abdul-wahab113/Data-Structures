@@ -12,11 +12,13 @@ int main()
     // changing the case of the character
     string name = "abdul";
 
-    // for (char ch : name)
-    // {
-    //     cout << char(ch -32);
-    // }
+    // using foreach loop
+    for (char ch : name)
+    {
+        cout << char(ch - 32);
+    }
 
+    // using simple for loop
     // Lower case -> Upper Case
     for (int i = 0; name[i] != '\0'; i++)
     {
@@ -52,6 +54,42 @@ int main()
     }
 
     cout << "Toggled Alphabets Message: " << message << endl;
+
+    // counting the vowel and the consonents characters in the string
+    string A = "How are you?";
+
+    int vowelcount = 0;
+    int cosonantcount = 0;
+
+    for (int i = 0; A[i] != '\0'; i++)
+    {
+        if (A[i] == 'a' || A[i] == 'e' || A[i] == 'i' || A[i] == 'o' || A[i] == 'u' || A[i] == 'A' || A[i] == 'E' || A[i] == 'I' || A[i] == 'O' || A[i] == 'U')
+        {
+            vowelcount++;
+        }
+
+        else if ((static_cast<int>(A[i]) >= 97 && static_cast<int>(A[i] <= 122)) || (static_cast<int>(A[i]) >= 65 && static_cast<int>(A[i]) <= 90))
+        {
+            cosonantcount++;
+        }
+    }
+
+    cout << "Vowels: " << vowelcount << endl;
+    cout << "Consonent Count: " << cosonantcount << endl;
+
+    // Number of words in a string (Sentence)
+    string sentence = "How are you?";
+
+    int wordcount = 0;
+    for (int i = 0; sentence[i] != '\0'; i++)
+    {
+        if (sentence[i] == ' ' && sentence[i - 1] != ' ')
+        {
+            wordcount++;
+        }
+    }
+
+    cout << "Total Words in sentence :" << sentence << " : " << wordcount+1 << endl;
 
     return 0;
 }
