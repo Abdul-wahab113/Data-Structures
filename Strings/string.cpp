@@ -28,6 +28,7 @@ void demonstrateCaseConversion()
     {
         cout << char(ch - 32);
     }
+    cout << endl;
 
     // --- Task 2.2: Convert to Uppercase In-Place Using Standard for Loop ---
     // Time Complexity: O(n) | Space Complexity: O(1)
@@ -86,7 +87,7 @@ void countVowelsAndConsonants()
     for (int i = 0; A[i] != '\0'; i++)
     {
         // Check if character is a vowel (both lowercase and uppercase)
-        if (A[i] == 'a' || A[i] == 'e' || A[i] == 'i' || A[i] == 'o' || A[i] == 'u' || 
+        if (A[i] == 'a' || A[i] == 'e' || A[i] == 'i' || A[i] == 'o' || A[i] == 'u' ||
             A[i] == 'A' || A[i] == 'E' || A[i] == 'I' || A[i] == 'O' || A[i] == 'U')
         {
             vowelcount++;
@@ -121,6 +122,30 @@ void countWords()
     cout << "Total Words in sentence :" << sentence << " : " << wordcount + 1 << endl;
 }
 
+void checkPalindrome()
+{
+    string str = "madam";
+    bool ispalindrome = true;
+
+    for (int i = 0, j = str.size() - 1; i < j; i++, j--)
+    {
+        if (str[i] != str[j])
+        {
+            ispalindrome = false;
+            break;
+        }
+    }
+
+    if (ispalindrome)
+    {
+        cout << "Palindrome found" << endl;
+    }
+
+    else
+    {
+        cout << "Not a palindrome" << endl;
+    }
+}
 int main()
 {
     // Execute each demonstration function
@@ -128,7 +153,7 @@ int main()
     cout << endl;
 
     demonstrateCaseConversion();
-    
+
     demonstrateToggleCase();
     cout << endl;
 
@@ -136,7 +161,10 @@ int main()
     cout << endl;
 
     countWords();
-    
+    cout << endl;
+
+    checkPalindrome();
+    cout << endl;
+
     return 0;
 }
-
